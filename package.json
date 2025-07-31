@@ -1,0 +1,28 @@
+{
+  "name": "nutrition_app",
+  "version": "1.0.0",
+  "description": "My first Node JS app.",
+  "repository": {
+    "type": "git",
+    "url": "git@github-personal:amoghnp/nutrition_app.git"
+  },
+  "license": "ISC",
+  "author": "Amogh",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "bootstrap": "^5.3.7",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.5"
+  }
+}

@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <%- include ("partials/navbar") %>
+    <div class="d-flex flex-column mt-5 bg-dark text-light min-vh-100" data-bs-theme="dark">
+        <div class="container d-flex flex-column align-items-center justify-content-center bg-dark text-light" style="min-height: 75vh;">
+            <br><h1>Dashboard</h1>
+            <img src="/images/logo.jpeg" alt="Logo" class="img-fluid" style="width: 300px; height: auto;"><br>
+
+            <h6>Welcome back <%= user.username %>! Here are your statistics since the day you have joined us.</h6><br>
+
+            <table class="table table-dark table-striped w-auto">
+                <tbody>
+                    <tr>
+                        <th scope="row">Current Weight</th>
+                        <td><%= stats.weight %> kg</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Target Weight</th>
+                        <td><%= stats.targetWeight %> kg</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Height</th>
+                        <td><%= stats.height %> cm</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date Of Birth</th>
+                        <td><%= stats.dateOfBirth %></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Calories Consumed</th>
+                        <td><%= stats.caloriesConsumed %> kcal</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total Calories Burned</th>
+                        <td><%= stats.caloriesBurned %> kcal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Register Page</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="d-flex flex-column mt-5 bg-dark text-light min-vh-100" data-bs-theme="dark">
+        <div class="container d-flex flex-column align-items-center justify-content-center bg-dark text-light" style="min-height: 75vh;">
+            <br><br>
+            <div class="d-flex flex-column col-md-4 justify-content-center">
+                <h1 class="text-center mb-4">Register</h1>
+                <form action="/auth/register" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Weight (kg)</label>
+                        <input type="number" class="form-control" id="weight" name="weight" required>   
+                    </div>
+                    <div class="mb-3">
+                        <label for="targetWeight" class="form-label">Target Weight (kg)</label>
+                        <input type="number" class="form-control" id="targetWeight" name="targetWeight" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="height" class="form-label">Height (cm)</label>
+                        <input type="number" class="form-control" id="height" name="height" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+                    </div><br>
+                    <button type="submit" class="btn btn-success w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
