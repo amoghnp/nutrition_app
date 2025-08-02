@@ -3,7 +3,6 @@ var bycrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 var router = express.Router();
-var UserStats = require('../models/UserStats');
 var urlparser = require('body-parser');
 const { route } = require('./home');
 
@@ -16,9 +15,9 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', urlparser.json(), async function(req, res) {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ username: username });
 
     if (!user) {
       return res.status(400).send('User not found');
@@ -31,7 +30,7 @@ router.post('/login', urlparser.json(), async function(req, res) {
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' });
+    res.cookie('token', token, { httpOnly: true, secure: false, sameSite: 'strict' });
     res.redirect('/dashboard');
   } 
   catch (err) {
@@ -50,7 +49,7 @@ router.get('/register', function(req, res) {
 }); 
 
 router.post('/register', urlparser.json(), async function(req, res) {
-  const { username, password, weight, targetWeight, height, dateOfBirth } = req.body;
+  const { username, password, email, name } = req.body;
 
   try {
     const hashedPassword = await bycrypt.hash(password, 10);
@@ -61,19 +60,9 @@ router.post('/register', urlparser.json(), async function(req, res) {
       return res.status(400).send('User already exists');
     }
 
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, password: hashedPassword, email: email, name: name });
 
     await newUser.save();
-
-    const userStats = new UserStats({
-      userId: newUser._id,
-      weight: weight,
-      height: height,
-      targetWeight: targetWeight,
-      dateOfBirth: dateOfBirth
-    });
-
-    await userStats.save();
 
     res.redirect('/auth/login?message=Registration successful. Please log in.');
   } 

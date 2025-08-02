@@ -12,37 +12,38 @@
             <br><h1>Dashboard</h1>
             <img src="/images/logo.jpeg" alt="Logo" class="img-fluid" style="width: 300px; height: auto;"><br>
 
-            <h6>Welcome back <%= user.username %>! Here are your statistics since the day you have joined us.</h6><br>
+            <h6>Welcome back <%= user.username %>! Fuel your goals with smarter food choices today.</h6><br>
 
-            <table class="table table-dark table-striped w-auto">
-                <tbody>
-                    <tr>
-                        <th scope="row">Current Weight</th>
-                        <td><%= stats.weight %> kg</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Target Weight</th>
-                        <td><%= stats.targetWeight %> kg</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Height</th>
-                        <td><%= stats.height %> cm</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Date Of Birth</th>
-                        <td><%= stats.dateOfBirth %></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Total Calories Consumed</th>
-                        <td><%= stats.caloriesConsumed %> kcal</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Total Calories Burned</th>
-                        <td><%= stats.caloriesBurned %> kcal</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> 
+            <div class="container p-4 my-3" style="border: 5px solid green; background-color: #222;">
+                <h6>What are you craving today? Enter a food item to get started!</h6>
+                <form action="/dashboard" method="POST">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="foodItem" placeholder="Enter food item" required>
+                        <button class="btn btn-warning" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <% if (alternative && alternative.length > 0) { %>
+            <div class="container p-4 my-3 d-flex flex-column align-items-center justify-content-center" style="border: 5px solid blue; background-color: #222;">
+                <h6>Here is a healthier alternative:</h6>
+                <h6>Dish : <strong><%= alternative[0].alternativeDish %></strong></h6><br>
+                <h6>Ingredients : </h6>
+                <ul>
+                    <% alternative[0].altRecipe[0].ingredients.forEach(function(ingredient) { %>
+                        <li><%= ingredient %></li>
+                    <% }); %>
+                </ul><br>
+
+                <h6>Instructions : </h6>
+                <ul>
+                    <% alternative[0].altRecipe[0].instructions.forEach(function(instruction) { %>
+                        <li><%= instruction %></li>
+                    <% }); %>
+                </ul>
+            </div>
+            <% } %>
+        </div>
     </div>
 </body>
 </html>
